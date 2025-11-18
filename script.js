@@ -53,11 +53,15 @@ function rgbToHsv(r,g,b){
   return [h, s*100, v*100];
 }
 
-// Capture background
+// Capture background (MIRRORED)
 captureBtn.onclick = ()=>{
   log("Capturing background...");
   setTimeout(()=>{
-    ctx.drawImage(video,0,0,width,height);
+    ctx.save();
+    ctx.scale(-1, 1);
+    ctx.drawImage(video, -width, 0, width, height);
+    ctx.restore();
+
     background = ctx.getImageData(0,0,width,height);
     log("Background captured!");
   },300);
@@ -114,7 +118,13 @@ function smoothMask(mask,w,h){
 
 // Main loop
 function render(){
-  ctx.drawImage(video,0,0,width,height);
+
+  // MIRROR the video feed
+  ctx.save();
+  ctx.scale(-1, 1);
+  ctx.drawImage(video, -width, 0, width, height);
+  ctx.restore();
+
   const frame = ctx.getImageData(0,0,width,height);
 
   if(background && sampledHSV){
@@ -154,4 +164,5 @@ function render(){
   ctx.putImageData(frame,0,0);
   requestAnimationFrame(render);
 }
+
 render();

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invisibility Cloak – Interactive</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Invisibility Cloak — Interactive Web Version</h1>
+
+  <div class="wrap">
+
+    <!-- LEFT SIDE: Only ONE visible canvas -->
+    <div class="video-area">
+      <video id="video" autoplay playsinline></video>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- RIGHT SIDE: Controls -->
+    <div class="controls">
+
+      <button id="capture-btn">📸 Capture Background</button>
+      <button id="auto-capture-btn">⏱ Auto Capture (3s)</button>
+
+      <div class="row">
+        <label>Sample color (click canvas)</label>
+        <div id="sample-color" class="sample-box"></div>
+      </div>
+
+      <div class="slider-row">
+        <label>Hue range ±<span id="h-range-val">20</span></label>
+        <input id="h-range" type="range" min="5" max="90" value="20">
+      </div>
+
+      <div class="slider-row">
+        <label>Saturation min <span id="s-min-val">35</span>%</label>
+        <input id="s-min" type="range" min="0" max="100" value="35">
+      </div>
+
+      <div class="slider-row">
+        <label>Brightness min <span id="v-min-val">30</span>%</label>
+        <input id="v-min" type="range" min="0" max="100" value="30">
+      </div>
+
+      <div class="row">
+        <label><input id="preview-mask" type="checkbox"> Show mask debug</label>
+      </div>
+
+      <div class="hint">
+        <b>How to use:</b>
+        <ol>
+          <li>Step out of camera → press <b>Capture Background</b></li>
+          <li>Come back wearing a <b>GREEN T-shirt</b></li>
+          <li>Click on the green T-shirt in the canvas to sample color</li>
+          <li>Adjust Hue/Saturation/Brightness if needed</li>
+        </ol>
+      </div>
+
+      <div id="log" class="log"></div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
